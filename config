@@ -191,9 +191,7 @@ exec feh --bg-scale ~/Pictures/Ubuntu\ Purple\ 1920\ x\ 1080\ HDTV\ 1080p.jpeg
 exec xrdm -merge ~/.Xresources
 exec_always --no-startup-id ~/.i3/polybar.sh &
 exec_always --no-startup-id ~/.i3/conky.sh &
-# exec compton -CGb --config ~/.i3/compton.conf 
-
-
+exec_always --no-startup-id ~/.i3/compton.sh
 
 
 bindsym $mod+shift+x exec i3lock -c 000000
