@@ -1,0 +1,203 @@
+!! URxvt.font: xft::pixelsize=14
+!! URxvt.scrollBar: false
+!! URxvt*saveLines: 12000
+!! URxvt*background: black
+URxvt*foreground: 		                #c5c8c6
+
+! Extensions
+! ==========
+!
+! - matcher,selection-to-clipboard: for clicking on URLs
+! - font-size: for scaling fonts
+!   https://github.com/majutsushi/urxvt-font-size/blob/master/font-size
+!
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
+
+
+! Fonts
+! =====
+URxvt*font:                 xft:Source Code Pro Light:size=15:Light,xft:Arial Light:size=15:Light
+URxvt*boldFont:             xft:Source Code Pro Light:size=15:Bold,xft:Arial Light:size=15:Bold
+URxvt*italicFont:           xft:Source Code Pro Light:size=15:Italic,xft:Arial Light:size=15:Italic
+URxvt*boldItalicFont:       xft:Source Code Pro Light:size=15:Bold:Italic,xft:Arial Light:size=15:Bold:Italic
+URxvt.allow_bold: true
+
+
+! Scrolling
+! =========
+URxvt.saveLines: 10000
+URxvt.scrollBar: true
+URxvt.scrollstyle: rxvt
+URxvt.scrollBar_floating: true
+URxvt.scrollColor: #aaaaaa
+URxvt.scrollBar_right: true
+URxvt.thickness: 12
+
+! Scroll locking
+URxvt.scrollTtyOutput:      false
+URxvt.scrollWithBuffer:     true
+URxvt.scrollTtyKeypress:    true
+
+
+! Interaction
+! ===========
+
+! allow filepaths to select as one, otherwise delimit
+URxvt.cutchars: "\"(),<>[]{}|'`"
+
+! For clickable urls (RMB), not an exact match to gnome-shell.
+URxvt.url-launcher: xdg-open
+URxvt.matcher.button: 3
+
+
+! Key Bindings
+! ============
+
+! Copy/Paste, same keys as gnome-terminal
+! https://stackoverflow.com/questions/39884093
+! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
+URxvt.iso14755:        false
+URxvt.iso14755_52:     false
+! Disable Ctrl-Alt-c & Ctrl-Alt-v bindings (optional)
+URxvt.keysym.C-M-c:    builtin-string:
+URxvt.keysym.C-M-v:    builtin-string:
+! Bind Ctrl-Shift-c & Ctrl-Shift-v to copy and paste
+! I dont know why, but I needed to use hex keysym values to get it to work
+URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
+URxvt.keysym.C-S-0x56: eval:paste_clipboard
+
+URxvt.keysym.Home: \033[H
+!! URxvt.keysym.End:  \033[F
+URxvt.keysym.End:  \033[1;5C
+
+
+! match vte/xterm
+URxvt.keysym.Control-Up:    \033[1;5A
+URxvt.keysym.Control-Down:  \033[1;5B
+URxvt.keysym.Control-Left:  \033[1;5D
+URxvt.keysym.Control-Right: \033[1;5C
+
+! clear the scrollbacdf
+!URxvt.keysym.Control-l: command:\033c
+URxvt.keysym.Control-l: echo -ne '\\033c'\n
+
+
+
+! scale fonts
+URxvt.keysym.C-S-plus: font-size:increase
+URxvt.keysym.C-KP_Add: font-size:increase
+URxvt.keysym.C-S-underscore: font-size:decrease
+URxvt.keysym.C-KP_Subtract: font-size:decrease
+URxvt.keysym.C-0: font-size:reset
+URxvt.keysym.C-KP_0: font-size:reset
+
+
+! Theme/Colors
+! ============
+
+URxvt.fading: 0
+
+URxvt.cursorColor: #AAAAAA
+URxvt.cursorBlink: 1
+URxvt.cursorUnderline: 1
+
+URxvt.background:	[100]#000000
+!!URxvt.background:	[100]#1e1e20 
+URxvt.foreground: gray
+
+!! Tango Colors
+!
+!! black dark/light
+URxvt.color0: #171A1B
+URxvt.color8: #555753
+
+!! red dark/light
+URxvt.color1: #CC0000
+URxvt.color9: #FF0000
+
+!! green dark/light
+URxvt.color2: #00DD00
+URxvt.color10: #00FF00
+
+!! yellow dark/light
+URxvt.color3: #DDDD00
+URxvt.color11: #FFFF00
+
+!! blue dark/light
+URxvt.color4: #8888FF
+URxvt.color12: #AAAAFF
+
+!! magenta dark/light
+URxvt.color5: #75507B
+URxvt.color13: #AD7FA8
+
+!! cyan dark/light
+URxvt.color6: #06989A
+URxvt.color14: #34E2E2
+
+!! white dark/light
+URxvt.color7: #D3D7CF
+URxvt.color15: #EEEEEC
+
+!! Keybinding for proper vim functioning
+	!URxvt.keysym.Up : 33[A !breaks arrow keys in Vim
+!URxvt.keysym.Down : 33[B !breaks arrow keys in Vim
+!URxvt.keysym.Right : 33[C !breaks arrow keys in Vim
+!URxvt.keysym.Left : 33[D !breaks arrow keys in Vim
+!URxvt.keysym.Page_Up : 33[5~ !breaks scrolling in Rxvt
+!URxvt.keysym.Page_Down : 33[6~ !breaks scrolling in Rxvt
+!URxvt.keysym.Home : 33[H !breaks navigation in Vim
+!URxvt.keysym.End : 33[F !breaks navigation in Vim
+URxvt.keysym.S-Up : 33[1;2A
+URxvt.keysym.S-Down : 33[1;2B
+URxvt.keysym.S-Right : 33[1;2C
+URxvt.keysym.S-Left : 33[1;2D
+
+!URxvt.keysym.S-Page_Up : captured by terminal for scrolling
+!URxvt.keysym.S-Page_Down : captured by terminal for scrolling
+URxvt.keysym.S-Home : 33[1;2H
+URxvt.keysym.S-End : 33[1;2F
+URxvt.keysym.M-Up : 33[1;3A
+URxvt.keysym.M-Down : 33[1;3B
+URxvt.keysym.M-Right : 33[1;3C
+URxvt.keysym.M-Left : 33[1;3D
+URxvt.keysym.M-Page_Up : 33[5;3~
+URxvt.keysym.M-Page_Down : 33[6;3~
+URxvt.keysym.M-Home : 33[1;3H
+URxvt.keysym.M-End : 33[1;3F
+URxvt.keysym.M-S-Up : 33[1;4A
+URxvt.keysym.M-S-Down : 33[1;4B
+URxvt.keysym.M-S-Right : 33[1;4C
+URxvt.keysym.M-S-Left : 33[1;4D
+
+!URxvt.keysym.M-S-Page_Up : seen as Rxvt.keysym.S-Page_Up
+!URxvt.keysym.M-S-Page_Down : seen as Rxvt.keysym.S-Page_Down
+URxvt.keysym.M-S-Home : 33[1;4H
+URxvt.keysym.M-S-End : 33[1;4F
+URxvt.keysym.C-Page_Up : 33[5;5~
+URxvt.keysym.C-Page_Down : 33[6;5~
+URxvt.keysym.C-Home : 33[1;5H
+URxvt.keysym.C-End : 33[1;5F
+URxvt.keysym.C-S-Up : 33[1;6A
+URxvt.keysym.C-S-Down : 33[1;6B
+URxvt.keysym.C-S-Right : 33[1;6C
+URxvt.keysym.C-S-Left : 33[1;6D
+
+!URxvt.keysym.C-S-Page_Up : seen as Rxvt.keysym.S-Page_Up
+!URxvt.keysym.C-S-Page_Down : seen as Rxvt.keysym.S-Page_Down
+URxvt.keysym.C-S-Home : 33[1;6H
+URxvt.keysym.C-S-End : 33[1;6F
+URxvt.keysym.M-C-Up : 33[1;7A
+URxvt.keysym.M-C-Down : 33[1;7B
+URxvt.keysym.M-C-Right : 33[1;7C
+URxvt.keysym.M-C-Left : 33[1;7D
+URxvt.keysym.M-C-Page_Up : 33[5;7~
+URxvt.keysym.M-C-Page_Down : 33[6;7~
+URxvt.keysym.M-C-Home : 33[1;7H
+URxvt.keysym.M-C-End : 33[1;7F
+URxvt.keysym.M-C-S-Up : 33[1;8A
+URxvt.keysym.M-C-S-Down : 33[1;8B
+URxvt.keysym.M-C-S-Right : 33[1;8C
+URxvt.keysym.M-C-S-Left : 33[1;8D 
+
+

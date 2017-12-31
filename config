@@ -36,8 +36,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+m exec i3-sensible-terminal -e ranger
 
 # kill focused window
@@ -192,7 +191,7 @@ exec feh --bg-scale ~/Pictures/Ubuntu\ Purple\ 1920\ x\ 1080\ HDTV\ 1080p.jpeg
 exec xrdm -merge ~/.Xresources
 exec_always --no-startup-id ~/.i3/polybar.sh &
 exec_always --no-startup-id ~/.i3/conky.sh &
-exec compton -CGb --config ~/.i3/compton.conf 
+# exec compton -CGb --config ~/.i3/compton.conf 
 
 
 
