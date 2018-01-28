@@ -32,6 +32,10 @@ set $left j
 set $right semicolon
 set $mod Mod4
 
+gaps inner 7
+gaps outer 7
+for_window [class="^.*"] border pixel 0
+
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -53,6 +57,10 @@ bindsym $mod+Shift+q kill
 # rofi bindings
 bindsym $mod+d exec "rofi -show-icons -modi combi -show combi -combi-modi run,drun"
 bindsym $mod+c exec rofi -show-icons -show window
+
+#Bind monitor switch
+bindsym $mod+p exec " xrandr --output HDMI-1-1 --off"
+bindsym $mod+z exec "xrandr | grep 'HDMI-1-1 connected' && xrandr --output HDMI-1-1 --auto --output eDP-1-1 --auto --right-of HDMI-1-"
 
 # change focus
 bindsym $mod+$left focus left
