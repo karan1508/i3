@@ -197,11 +197,11 @@ bindsym $mod+r mode "resize"
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
-exec feh --bg-scale ~/Pictures/Ubuntu\ Purple\ 1920\ x\ 1080\ HDTV\ 1080p.jpeg
+exec feh --bg-scale '/data/home/Pictures/The\ Grand\ Canal\ Venice\ 1920\ x\ 1080\ HDTV\ 1080p.jpeg'
 exec xrdm -merge ~/.Xresources
 exec_always --no-startup-id ~/.i3/polybar.sh &
 exec_always --no-startup-id ~/.i3/conky.sh &
-exec_always --no-startup-id ~/.i3/compton.sh
+# exec_always --no-startup-id ~/.i3/compton.sh
 
 
 bindsym $mod+shift+x exec i3lock -c 000000
