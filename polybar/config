@@ -1,4 +1,13 @@
-;=====================================================
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
 ;
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
@@ -9,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #aa222222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -18,15 +27,16 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+
 [bar/main_bar]
 monitor = ${env:MONITOR:}
 width = 100%
-height = 30
-bottom = true
+height = 40
+bottom = false
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
-fixed-center = false
+radius = 10.0
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -34,30 +44,31 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
-border-color = #00000000
+border-size = 10
+;border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
+
 
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Source Code Pro for Powerline:weight=bold:pixelsize=12;2"
-font-1 = "Roboto:size=11:weight=bold;2"
-font-2 = "FontAwesome:size=11;1"
+font-1 = fixed:pixelsize=14;0
+;font-2 = unifont:fontformat=truetype:size=10:antialias=false;0
+font-0 = FontAwesome:style=Regular
 
-modules-left = i3
-modules-center = mpd
-modules-right = filesystem volume  memory cpu wlan eth battery temperature date powermenu
+modules-left = i3 xwindow
+modules-center = date
+modules-right = battery wlan volume
 
-tray-position = right
+tray-position = none
 tray-padding = 2
 ;tray-transparent = true
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
@@ -104,8 +115,8 @@ label-indicator-background = #8139e8
 type = internal/fs
 
 ; Mountpoints to display
-mount-0 = /
-mount-1 = /data
+;mount-0 = /
+;mount-1 = /data
 
 
 ; Seconds to sleep between updates
@@ -118,7 +129,7 @@ fixed-values = true
 
 ; Spacing between entries
 ; Default: 2
-spacing = 2
+spacing = 1
 
 [module/i3]
 type = internal/i3
@@ -181,7 +192,7 @@ format = <label-state> <label-mode>
 ;   %mode%
 ; Default: %mode%
 label-mode = %mode%
-label-mode-padding = 2
+label-mode-padding = 1
 label-mode-background = #e60053
 
 ; Available tokens:
@@ -190,11 +201,11 @@ label-mode-background = #e60053
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-focused = %name%
+label-focused = %index%
 label-focused-foreground = #ffffff
-label-focused-background = #3f3f3f
+label-focused-background = 
 label-focused-underline = #fba922
-label-focused-padding = 1
+label-focused-padding = 0
 
 ; Available tokens:
 ;   %name%
@@ -202,7 +213,8 @@ label-focused-padding = 1
 ;   %index%
 ; Default: %icon%  %name%
 label-unfocused = %index%
-label-unfocused-padding = 1
+label-unfocused-padding = 0
+label-unfocused-foreground = #999999
 
 ; Available tokens:
 ;   %name%
@@ -211,7 +223,7 @@ label-unfocused-padding = 1
 ; Default: %icon%  %name%
 label-visible = %index%
 label-visible-underline = #555555
-label-visible-padding = 1
+label-visible-padding = 0
 
 ; Available tokens:
 ;   %name%
@@ -221,11 +233,11 @@ label-visible-padding = 1
 label-urgent = %index%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
-label-urgent-padding = 4
+label-urgent-padding = 0
 
 ; Separator in between workspaces
 label-separator = |
-label-separator-padding = 2
+label-separator-padding = 1
 label-separator-foreground = #ffb52a
 
 [module/mpd]
@@ -271,13 +283,13 @@ interval = 2
 ;   <bar-load>
 ;   <ramp-load>
 ;   <ramp-coreload>
-format = <label> <ramp-coreload>
+format = <label>
 
 ; Available tokens:
 ;   %percentage% (default) - total cpu load
 ;   %percentage-cores% - load percentage for each core
 ;   %percentage-core[1-9]% - load percentage for specific core
-label = CPU %percentage%%
+label = CPU(%percentage%%)
 
 ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
@@ -297,7 +309,7 @@ interval = 2
 ;   <label> (default)
 ;   <bar-used>
 ;   <bar-free>
-format = <label> <bar-used>
+format = <label>
 
 ; Available tokens:
 ;   %percentage_used% (default)
@@ -308,7 +320,7 @@ format = <label> <bar-used>
 ;   %mb_used%
 ;   %mb_free%
 ;   %mb_total%
-label = RAM %gb_used%/%gb_total%
+label = RAM(%percentage_used%%)
 
 ; Only applies if <bar-used> is used
 bar-used-indicator =
@@ -323,13 +335,13 @@ bar-used-empty-foreground = #444444
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlo1
 interval = 3.0
 
 ; Available tags:
 ;   <label-connected> (default)
 ;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
 
 ; Available tags:
 ;   <label-disconnected> (default)
@@ -356,7 +368,7 @@ label-connected-foreground = #eefafafa
 ; Available tokens:
 ;   %ifname%    [wireless+wired]
 ; Default: (none)
-label-disconnected = not connected
+label-disconnected = not connected ⛔
 label-disconnected-foreground = #66ffffff
 
 ; Available tokens:
@@ -386,8 +398,6 @@ animation-packetloss-1-foreground = #000000
 animation-packetloss-framerate = 500
 
 
-
-
 [module/eth]
 type = internal/network
 interface = enp1s0
@@ -413,14 +423,14 @@ interval = 1.0
 
 ; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
-date = %Y-%m-%d
+date = %m-%d
 
 ; Optional time format
 time = %H:%M
 
 ; if `date-alt` or `time-alt` is defined, clicking
 ; the module will toggle between formats
-date-alt = %A%, %d %B %Y
+date-alt = %A, %d %B %Y
 time-alt = %H:%M:%S
 
 ; Available tags:
@@ -432,8 +442,8 @@ format-foreground = #fff
 ;   %date%
 ;   %time%
 ; Default: %date%
-label = %date% %time%
-label-font = 3
+label = %time% %date% 
+label-font = 0
 label-foreground = #ffff
 
 
@@ -441,14 +451,14 @@ label-foreground = #ffff
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
-bar-volume-width = 10
+bar-volume-width = 5
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -458,11 +468,11 @@ bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator-font = 0
 bar-volume-fill = ─
-bar-volume-fill-font = 2
+bar-volume-fill-font = 0
 bar-volume-empty = ─
-bar-volume-empty-font = 2
+bar-volume-empty-font = 0
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
@@ -478,19 +488,19 @@ ime-format = %H:%M
 ;   <bar-capacity>
 ;   <ramp-capacity>
 ;   <animation-charging>
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging>
 
 ; Available tags:
 ;   <label-discharging> (default)
 ;   <bar-capacity>
 ;   <ramp-capacity>
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity>
 
 ; Available tags:
 ;   <label-full> (default)
 ;   <bar-capacity>
 ;   <ramp-capacity>
-;format-full = <ramp-capacity> <label-full>
+;format-full = <ramp-capacity>
 
 ; Available tokens:
 ;   %percentage% (default)
@@ -594,10 +604,10 @@ menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
+;ompositing-background = xor
+;ompositing-background = screen
+compositing-foreground = source
+compositing-border = over
 
 [global/wm]
 margin-top = 5
